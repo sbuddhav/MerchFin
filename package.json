@@ -1,0 +1,23 @@
+{
+  "name": "merchfin",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "migrate": "npm run migrate -w server",
+    "migrate:rollback": "npm run migrate:rollback -w server",
+    "seed": "npm run seed -w server",
+    "build": "npm run build -w client && npm run build -w server",
+    "start": "node server/dist/index.js",
+    "migrate:production": "NODE_ENV=production knex migrate:latest --knexfile server/knexfile.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
